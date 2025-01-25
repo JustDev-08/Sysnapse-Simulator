@@ -1,0 +1,132 @@
+[gd_scene load_steps=14 format=3 uid="uid://bv3xlsfrd65gb"]
+
+[ext_resource type="Texture2D" uid="uid://dld656kbvgreg" path="res://asset/Image/body.png" id="1_riq8x"]
+[ext_resource type="Script" path="res://asset/Code/clemical_presynapse.gd" id="1_xyqjo"]
+[ext_resource type="Texture2D" uid="uid://e74rqmuhhmfn" path="res://asset/Image/mouth-idle.png" id="2_4cxvm"]
+[ext_resource type="Texture2D" uid="uid://cg43761kgdou6" path="res://asset/Image/mouth-full.png" id="3_3v1j6"]
+[ext_resource type="Texture2D" uid="uid://d4fao4ffseuyn" path="res://asset/Image/CaClosed.png" id="4_ooamt"]
+[ext_resource type="Texture2D" uid="uid://w173nd1pgxji" path="res://asset/Image/CaOpen.png" id="5_up6bb"]
+[ext_resource type="Script" path="res://asset/Code/nt.gd" id="7_dbnlv"]
+[ext_resource type="PackedScene" uid="uid://c04yin7bwcm31" path="res://asset/Scene/NT.tscn" id="7_me1n3"]
+[ext_resource type="Script" path="res://asset/Scene/ca.gd" id="9_khuig"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kbwiv"]
+friction = 0.0
+bounce = 0.4
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i5dgq"]
+friction = 0.0
+bounce = 0.35
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7qki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3v1j6")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4cxvm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aah1r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ooamt")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_up6bb")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="ClemicalPresynapse" type="StaticBody2D"]
+position = Vector2(1002, 726)
+physics_material_override = SubResource("PhysicsMaterial_kbwiv")
+script = ExtResource("1_xyqjo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-81.5, -178)
+scale = Vector2(0.388184, 0.439453)
+texture = ExtResource("1_riq8x")
+
+[node name="Closed-gate" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-255, -498, -266, -306, -304, -256, -328, -238, -365, -211, -408, -142, -419, -94, -417, -18, -391, 8, -367, 27, -343, 30, -372, -1, -405, -39, -408, -85, -391, -161, -353, -213, -308, -233, -265, -294, -234, -380, -235, -437, -234, -501)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-253, -497, -247, -477, 45, -473, 53, -369, 81, -318, 163, -252, 202, -195, 229, -131, 231, -72, 202, -29, 212, -12, 229, -48, 242, -93, 229, -163, 191, -237, 117, -310, 94, -336, 56, -503)
+
+[node name="Mouth" type="StaticBody2D" parent="."]
+position = Vector2(551, -785)
+physics_material_override = SubResource("PhysicsMaterial_i5dgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Mouth"]
+position = Vector2(-637.5, 640.5)
+scale = Vector2(0.372559, 0.377441)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mouth/Sprite2D"]
+sprite_frames = SubResource("SpriteFrames_u7qki")
+animation = &"idle"
+
+[node name="Colision-idle" type="CollisionPolygon2D" parent="Mouth"]
+polygon = PackedVector2Array(-904, 811, -878, 823, -834, 831, -778, 830, -721, 823, -644, 808, -557, 798, -481, 798, -429, 797, -380, 780, -350, 760, -342, 773, -426, 804, -512, 804, -634, 811, -729, 828, -811, 842, -869, 841, -903, 825)
+
+[node name="Colision-ful" type="CollisionPolygon2D" parent="Mouth"]
+polygon = PackedVector2Array(-904, 812, -892, 821, -874, 825, -835, 829, -801, 832, -739, 824, -679, 815, -626, 804, -616, 803, -609, 794, -611, 776, -605, 756, -596, 746, -576, 740, -558, 738, -546, 743, -539, 754, -536, 768, -537, 779, -542, 788, -545, 797, -502, 798, -429, 797, -378, 779, -346, 757, -342, 772, -424, 804, -548, 803, -549, 796, -545, 787, -541, 778, -540, 768, -543, 754, -549, 748, -560, 742, -578, 745, -592, 750, -598, 759, -602, 771, -605, 785, -604, 794, -605, 802, -616, 810, -700, 824, -814, 842, -882, 828, -902, 821)
+disabled = true
+
+[node name="Cagate" type="Sprite2D" parent="."]
+position = Vector2(-321, -274)
+scale = Vector2(0.09, 0.09)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cagate"]
+position = Vector2(44.4444, 266.667)
+sprite_frames = SubResource("SpriteFrames_aah1r")
+animation = &"closed"
+
+[node name="NT" type="Node2D" parent="."]
+script = ExtResource("7_dbnlv")
+
+[node name="RigidBody2D" parent="NT" instance=ExtResource("7_me1n3")]
+position = Vector2(-332, -379)
+
+[node name="RigidBody2D2" parent="NT" instance=ExtResource("7_me1n3")]
+position = Vector2(-531, -474)
+
+[node name="RigidBody2D3" parent="NT" instance=ExtResource("7_me1n3")]
+position = Vector2(-450, -553)
+
+[node name="RigidBody2D4" parent="NT" instance=ExtResource("7_me1n3")]
+position = Vector2(-618, -320)
+
+[node name="RigidBody2D5" parent="NT" instance=ExtResource("7_me1n3")]
+position = Vector2(-295, -489)
+
+[node name="CaArea" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CaArea"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CaArea/StaticBody2D"]
+polygon = PackedVector2Array(-684, -16, -514, -2, -455, 4, -395, -2, -419, -41, -536, -36, -644, -56, -683, -119, -691, -294, -647, -432, -481, -528, -318, -477, -270, -318, -258, -400, -319, -510, -421, -555, -544, -556, -643, -478, -718, -418, -731, -303, -737, -128, -730, -51)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="CaArea/StaticBody2D"]
+polygon = PackedVector2Array(-418, -43, -419, -83, -412, -122, -394, -161, -362, -212, -349, -225, -359, -240, -355, -257, -342, -258, -333, -260, -327, -275, -321, -276, -312, -268, -274, -300, -268, -323, -243, -372, -245, -481, -239, -484, -234, -374, -274, -283, -312, -252, -371, -183, -404, -109, -410, -48, -395, -24, -401, -15)
+
+[node name="Ca" type="Node2D" parent="CaArea"]
+script = ExtResource("9_khuig")

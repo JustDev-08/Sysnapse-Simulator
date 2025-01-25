@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk640eyqbjprp"]
+
+[ext_resource type="PackedScene" uid="uid://bv3xlsfrd65gb" path="res://asset/Scene/clemical_presynapse.tscn" id="1_rkx6x"]
+
+[node name="Mainscene" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 623.0
+offset_top = 26.0
+offset_right = 929.0
+offset_bottom = 110.0
+grow_vertical = 2
+size_flags_horizontal = 0
+text = "Add potential
+"
+
+[node name="ClemicalPresynapse" parent="." instance=ExtResource("1_rkx6x")]
+position = Vector2(409, 577)
+scale = Vector2(0.79, 0.79)
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 75.0
+offset_top = 42.0
+offset_right = 145.0
+offset_bottom = 73.0
+text = "add Ca+
+"
+
+[connection signal="button_down" from="Button" to="ClemicalPresynapse" method="_on_button_button_down"]
+[connection signal="button_down" from="Button2" to="ClemicalPresynapse" method="_on_button_2_button_down"]

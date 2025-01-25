@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmdk6yqywrs1y"]
+
+[ext_resource type="Texture2D" uid="uid://d1nx4y64sdegi" path="res://asset/Image/Ca.png" id="1_btvr1"]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+position = Vector2(68, 37)
+mass = 0.1
+gravity_scale = 0.238
+linear_velocity = Vector2(2.19, 3.73)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(13, -8)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("1_btvr1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-4, -6, 13, 8, 16, -15)

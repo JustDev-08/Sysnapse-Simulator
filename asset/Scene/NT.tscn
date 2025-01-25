@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c04yin7bwcm31"]
+
+[ext_resource type="Texture2D" uid="uid://cwi6uk7hpn5io" path="res://asset/Image/NT.png" id="1_qgbnd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fx4xi"]
+friction = 0.0
+bounce = 0.45
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gd737"]
+radius = 42.1485
+
+[node name="RigidBody2D" type="RigidBody2D"]
+position = Vector2(-337, -242)
+mass = 0.006
+physics_material_override = SubResource("PhysicsMaterial_fx4xi")
+linear_velocity = Vector2(1.845, 0.83)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(338, 251.5)
+scale = Vector2(0.0654297, 0.0717773)
+texture = ExtResource("1_qgbnd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(335, 241)
+scale = Vector2(0.745, 0.745)
+shape = SubResource("CircleShape2D_gd737")
